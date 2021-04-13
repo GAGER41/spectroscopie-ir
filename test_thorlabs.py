@@ -20,14 +20,13 @@ position = np.linspace(0, distance, len(temps))                     # matrice po
 _signal = data[1] - np.average(data[1])                             # signal, puissance
 
 fourier = np.fft.fft(_signal)                                       # fft du signal
-freq = np.fft.fftfreq(len(position), d=position[1]-position[0])     # on génère une matrice des fréquences dans l'espace de Fourier
+freq = np.fft.fftfreq(len(position), d=position[1]-position[0])     # on génère une matrice des fréquences dans l'espace de Fourier, en 1/dx (unités),  donc m^-1
 
 # on garde seulement la 2e moitié qui est positive
-
-lo_pos = 3e8 / freq[:int(len(freq)/2)]                              # *3e8*1e6
+lo_pos =  freq[:int(len(freq)/2)]                              # si on inverse (^-1), on obtient des longueurs d'onde
 fourier_pos = abs(fourier[:int(len(fourier)/2)])
 
 #plt.plot(freq[:int(len(freq)/2)]*3e8*1e6, abs(fourier[:int(len(fourier)/2)]))           #on plot seulement la deuxième moitié, pas les fréquences négatives.
-plt.plot(lo_pos[:400], fourier_pos[:400])
+plt.plot(lo_pos[:200], fourier_pos[:200])
 plt.show()
 
