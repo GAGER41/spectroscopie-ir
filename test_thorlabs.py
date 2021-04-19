@@ -2,11 +2,11 @@ import scipy
 import numpy as np
 from matplotlib import pyplot as plt
 import pandas as pd
+
 # Lumière blanche
 position = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\lumiere_blanche_thorlabs2.csv'
 data = pd.read_csv(position)                # lecture du csv
 data = np.array(data).transpose()           # conversion du data en array
-
 
 ## On ne connait pas le déplacement, mais les acquisitions sont faites sur 2 minutes (120 secondes)
 ## Par contre, on connait le temps entre les acquisitions et le pas, donc 1 micros-pas = 0.1 micron, à chaque 80 ms
@@ -31,7 +31,6 @@ position_e = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\
 data_e = pd.read_csv(position_e)                # lecture du csv
 data_e = np.array(data_e).transpose()           # conversion du data en array
 
-
 ## On ne connait pas le déplacement, mais les acquisitions sont faites sur 2 minutes (120 secondes)
 ## Par contre, on connait le temps entre les acquisitions et le pas, donc 1 micros-pas = 0.1 micron, à chaque 80 ms
 ## Vitesse de déplacement = 0.1micron/80ms, donc on peut connaître le déplacement total lors de l'acquisition
@@ -55,6 +54,6 @@ fourier_pos_t = fourier_pos[:200] / fourier_pos_e[:200]
 
 #plt.plot(freq[:int(len(freq)/2)]*3e8*1e6, abs(fourier[:int(len(fourier)/2)]))         #on plot seulement la deuxième moitié, pas les fréquences négatives.
 plt.plot(lo_pos[:200], fourier_pos_t, label = 'A1', color= 'black')
-plt.xlabel('fréquence (1/s)')
-plt.savefig('S2_spectre.png', dpi = 600)
+plt.xlabel("nombre d'onde (1/m)")
+plt.savefig(r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Analyse (png)\S2_spectre.png', dpi = 600)
 plt.show()
