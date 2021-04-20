@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import pandas as pd
 
 # Lumière blanche
-position = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\lumiere_blanche_thorlabs2.csv'
+position = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Tests_20-04-2021\lumiere_blanche_240s.csv'
 data = pd.read_csv(position)                # lecture du csv
 data = np.array(data).transpose()           # conversion du data en array
 
@@ -13,7 +13,7 @@ data = np.array(data).transpose()           # conversion du data en array
 ## Vitesse de déplacement = 0.1micron/80ms, donc on peut connaître le déplacement total lors de l'acquisition
 
 vitesse = 0.1e-6/80e-3 #m/s
-distance = 120 * vitesse #m
+distance = 240 * vitesse #m
 
 temps = data[0] #s                                                     # temps
 position = np.linspace(0, distance, len(temps))                        # matrice position généré avec le temps et la vitesse
@@ -27,7 +27,7 @@ lo_pos =  freq[:int(len(freq)/2)]                              # si on inverse (
 fourier_pos = abs(fourier[:int(len(fourier)/2)])
 
 #échantillon
-position_e = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Tests_13-04-2021\Jack_240s.csv'
+position_e = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Tests_20-04-2021\A9_240s.csv'
 data_e = pd.read_csv(position_e)                # lecture du csv
 data_e = np.array(data_e).transpose()           # conversion du data en array
 
@@ -54,7 +54,7 @@ fourier_pos_t = fourier_pos[:200] / fourier_pos_e[:200]
 
 #plt.plot(freq[:int(len(freq)/2)]*3e8*1e6, abs(fourier[:int(len(fourier)/2)]))
 plt.plot(lo_pos[:200] / 100, fourier_pos_t[:200], label = 'A1', color= 'black')
-plt.xlim(0,6000)
+plt.xlim(1500,4000)
 plt.xlabel("nombre d'onde (1/cm)")
 #plt.savefig(r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Analyse (png)\S2_spectre.png', dpi = 600)
 plt.show()
