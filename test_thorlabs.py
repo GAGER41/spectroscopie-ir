@@ -4,7 +4,8 @@ from matplotlib import pyplot as plt
 import pandas as pd
 
 # Lumière blanche
-position = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Tests_20-04-2021\lumiere_blanche_240s.csv'
+position = r'C:\Users\gabri\Documents\Université\Session 4\Optique (lab)\spectroscopie ir\Tests_20-04-2021\lumiere_blanche_240s.csv'
+#position = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Tests_20-04-2021\lumiere_blanche_240s.csv'
 data = pd.read_csv(position)                # lecture du csv
 data = np.array(data).transpose()           # conversion du data en array
 
@@ -27,7 +28,8 @@ lo_pos =  freq[:int(len(freq)/2)]                              # si on inverse (
 fourier_pos = abs(fourier[:int(len(fourier)/2)])
 
 #échantillon
-position_e = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Tests_20-04-2021\A9_240s.csv'
+position_e = r'C:\Users\gabri\Documents\Université\Session 4\Optique (lab)\spectroscopie ir\Tests_20-04-2021\A10_240s.csv'
+#position_e = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Tests_20-04-2021\A9_240s.csv'
 data_e = pd.read_csv(position_e)                # lecture du csv
 data_e = np.array(data_e).transpose()           # conversion du data en array
 
