@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 ## Jaune
 
-position_j = r'C:\Users\gabri\Documents\Université\Session 4\Optique (lab)\spectroscopie ir\essai_6(jaune).txt'
+position_j = r'C:\Users\gabri\Documents\Université\Session 4\Optique (lab)\spectroscopie ir\lumblanche-highres.txt'
 #data = np.array(pd.read_csv(position, usecols=[3, 4])).transpose()
 data_j = np.loadtxt(position_j, delimiter="	", skiprows=18, usecols=(1, 2)).transpose()
 
@@ -16,7 +16,7 @@ freq_j = np.fft.fftfreq(len(data_j[0]), d=position_j[1]-position_j[0])      # po
 #plt.plot(position, _signal)
 plt.plot(freq_j[:int(len(freq_j)/2)]*3e8*1e6, abs(fourier_j[:int(len(fourier_j)/2)]), 'y-')                                # On multiplie par c puis par 1e6 pour avoir des fréquences en Hz au lieu de 1/micron
 
-
+plt.show()
 ## Bleu
 
 position_b = r'C:\Users\gabri\Documents\Université\Session 4\Optique (lab)\spectroscopie ir\essai_6(bleu).txt'
@@ -45,7 +45,7 @@ freq_r = np.fft.fftfreq(len(data_r[0]), d=position_r[1]-position_r[0])      # po
 #plt.plot(position, _signal)
 plt.plot(freq_r[:int(len(freq_r)/2)]*3e8*1e6, abs(fourier_r[:int(len(fourier_r)/2)]), 'r-')                                # On multiplie par c puis par 1e6 pour avoir des fréquences en Hz au lieu de 1/micron
 
-plt.show()
+
 
 # Donc, la fonction np.fft.fft permet de faire des transformées de fourier sur une matrice de data
 # Scipy a peut-être aussi une fonction, mais elle n'a pas fonctionné ici
