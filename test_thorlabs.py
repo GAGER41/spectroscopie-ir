@@ -5,7 +5,7 @@ import pandas as pd
 
 
     ## Lumière blanche
-position = r'C:\Users\gabri\Documents\Université\Session 4\Optique (lab)\spectroscopie ir\Tests_20-04-2021\lumiere_2.csv'
+position = r'C:\Users\gabri\Documents\Université\Session 4\Optique (lab)\spectroscopie ir\lumiere_blanche_thorlabs2_120s.csv'
 #position = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Tests_20-04-2021\lumiere_blanche_240s.csv'
 data = pd.read_csv(position)                # lecture du csv
 data = np.array(data).transpose()           # conversion du data en array
@@ -28,7 +28,9 @@ freq = np.fft.fftfreq(len(position), d=position[1]-position[0])        # on gén
 lo_pos =  freq[:int(len(freq)/2)]                                      # si on inverse (^-1), on obtient des longueurs d'onde
 fourier_pos = abs(fourier[:int(len(fourier)/2)])
 
-for i in ['J', 'M', 'V']: #range(1, 11):
+
+    ## Échantillon
+for i in ['Gin', 'Jack', 'Vodka']: #range(1, 11):
 
     # coeff 20 avril, prendre lumiere_2.csv
     """if i == 1:
@@ -58,14 +60,14 @@ for i in ['J', 'M', 'V']: #range(1, 11):
         j = 1.06
     elif i == 9:
         j = 1.03"""
-    # bouésson 13 avril, prendre lumiere_blanche_thorlabs2.120s.csv
-    """if i == "Gin":
+    # bouésson 13 avril, prendre lumiere_blanche_thorlabs2_120s.csv
+    if i == "Gin":
         j = 1.1
     elif i == "Jack":
         j = 1.12
     elif i == "Vodka":
-        j = 1.12"""
-    # 13 avril, A1-2-3-6, lumiere_blanche_thorlabs2.120s.csv
+        j = 1.12
+    # 13 avril, A1-2-3-6, lumiere_blanche_thorlabs2_120s.csv
     """if i == 1:
         j = 1.04
     elif i == 2:
@@ -92,11 +94,9 @@ for i in ['J', 'M', 'V']: #range(1, 11):
         k = "Midori"
     elif i == "V":
         j = 0.99
-        k = "Vodka""""
+        k = 'Vodka'"""
 
-
-    ## Échantillon
-    position_e = r'C:\Users\gabri\Documents\Université\Session 4\Optique (lab)\spectroscopie ir\Tests_20-04-2021\{}_240s.csv'.format(i)
+    position_e = r'C:\Users\gabri\Documents\Université\Session 4\Optique (lab)\spectroscopie ir\Tests_13-04-2021\{}_240s.csv'.format(i)
     #position_e = r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Tests_20-04-2021\A9_240s.csv'
     data_e = pd.read_csv(position_e)                # lecture du csv
     data_e = np.array(data_e).transpose()           # conversion du data en array
@@ -124,13 +124,14 @@ for i in ['J', 'M', 'V']: #range(1, 11):
     #fourier_pos_t = (fourier_pos[:200]-fourier_pos_e[:200])/fourier_pos[:200]
 
     #plt.plot(freq[:int(len(freq)/2)]*3e8*1e6, abs(fourier[:int(len(fourier)/2)]))
-    plt.plot(lo_pos_e[:1000] / 100, fourier_pos_t, label ="Échantillon {}".format(k), color= 'black')
+    plt.plot(lo_pos_e[:1000] / 100, fourier_pos_t*100, label ="Échantillon {}".format(i))
     #plt.plot(lo_pos / 100, fourier_pos, "k-", label="Lumière blanche")
     #plt.plot(lo_pos_e/100, fourier_pos_e, "k--", label="Échantillon {}".format(i))
     plt.legend()
     plt.xlim(0,5000)
-    plt.ylim(0,10)
+    plt.ylim(0,12500)
     plt.xlabel("nombre d'onde (1/cm)")
+    plt.ylabel("transmission (%)")
     #plt.savefig(r'C:\Users\Sandrine Poulin\OneDrive\Documents\Hiver_2021\Labs TPOP\spectroscopie-ir\Analyse (png)\S2_spectre.png', dpi = 600)
-    #plt.savefig("spectre_{}_20avril.png".format(k), bbox_inches='tight',dpi=600)
-    plt.show()
+#plt.savefig("spectres_boissons_20avril.png", bbox_inches='tight',dpi=600)
+plt.show()
